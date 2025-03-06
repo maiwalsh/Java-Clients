@@ -1,0 +1,7 @@
+version: "3.8"
+
+services:
+  java-app:
+    image: maiwalsh/hello-world-java:latest
+    container_name: hello-world-java
+    restart: unless-stopped

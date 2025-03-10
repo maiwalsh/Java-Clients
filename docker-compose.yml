@@ -8,3 +8,6 @@ services:
     image: maiwalsh/hello-world-java-b:latest
     container_name: hello-world-java-b
     restart: unless-stopped
+    labels: 
+      test: "Test Label"
+

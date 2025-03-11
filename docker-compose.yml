@@ -1,13 +1,34 @@
 services:
-  java-appA:
-    image: maiwalsh/hello-world-java-a:latest
-    container_name: hello-world-java-a
+  producer:
+    build:
+      context: ./Hello-World-JavaA
+    container_name: producer
+    depends_on:
+      - broker
+    networks:
+    - traefik
+    - confluent
+    environment:
+      KAFKA_BROKER: "broker:29092"
     restart: unless-stopped
-  
-  java-appB:
-    image: maiwalsh/hello-world-java-b:latest
-    container_name: hello-world-java-b
-    restart: unless-stopped
-    labels: 
-      test: "Test Label"
 
+  consumer:
+    build:
+      context: ./Hello-World-JavaB
+    container_name: consumer
+    depends_on:
+      - broker
+    networks:
+    - traefik
+    - confluent
+    environment:
+      KAFKA_BROKER: "broker:29092"
+    restart: unless-stopped
+
+networks:
+  traefik:
+    name: traefik
+    external: true
+  confluent:
+    name: confluent
+    external: true

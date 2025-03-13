@@ -28,5 +28,5 @@ networks:
     name: traefik
     external: true
   confluent:
-    name: confluent
+    name: confluent_confluent
     external: true

@@ -1,7 +1,8 @@
 services:
   producer:
     build:
-      context: ./Hello-World-JavaA
+      context: ./Java-Producer
+    # image: maiwalsh/java-producer:latest
     container_name: producer
     depends_on:
       - broker
@@ -9,12 +10,13 @@ services:
     - traefik
     - confluent
     environment:
-      KAFKA_BROKER: "broker:29092"
+      KAFKA_BROKER: "confluent-broker.recrocog.com:9092"
     restart: unless-stopped
 
   consumer:
     build:
-      context: ./Hello-World-JavaB
+      context: ./Java-Consumer
+    # image: maiwalsh/java-consumer:latest
     container_name: consumer
     depends_on:
       - broker
@@ -22,7 +24,7 @@ services:
     - traefik
     - confluent
     environment:
-      KAFKA_BROKER: "broker:29092"
+      KAFKA_BROKER: "confluent-broker.recrocog.com:9092"
     restart: unless-stopped
 
 networks:

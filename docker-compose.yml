@@ -1,8 +1,8 @@
 services:
   producer:
-    build:
-      context: ./Java-Producer
-    # image: maiwalsh/java-producer:latest
+    # build:
+      # context: ./Java-Producer
+    image: maiwalsh/java-producer:latest
     container_name: producer
     depends_on:
       - broker
@@ -14,9 +14,9 @@ services:
     restart: unless-stopped
 
   consumer:
-    build:
-      context: ./Java-Consumer
-    # image: maiwalsh/java-consumer:latest
+    # build:
+      # context: ./Java-Consumer
+    image: maiwalsh/java-consumer:latest
     container_name: consumer
     depends_on:
       - broker

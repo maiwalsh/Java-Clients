@@ -1,1 +1,1 @@
-Hello World Java Deployment Code.
+Java Clients Deployment Code.

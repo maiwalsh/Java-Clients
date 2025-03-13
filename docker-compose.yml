@@ -4,8 +4,6 @@ services:
       # context: ./Java-Producer
     image: maiwalsh/java-producer:latest
     container_name: producer
-    depends_on:
-      - broker
     networks:
     - traefik
     - confluent
@@ -18,8 +16,6 @@ services:
       # context: ./Java-Consumer
     image: maiwalsh/java-consumer:latest
     container_name: consumer
-    depends_on:
-      - broker
     networks:
     - traefik
     - confluent

@@ -2,7 +2,7 @@ services:
   producer:
     # build:
       # context: ./Java-Producer
-    image: maiwalsh/java-producer:latest
+    image: maiwalsh/java-hb-producer:latest
     container_name: producer
     networks:
     - traefik

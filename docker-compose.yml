@@ -9,7 +9,7 @@ services:
     - confluent
     environment:
       JAVA_HOME: "/usr/lib/jvm/msopenjdk-current"
-      CONFLUENT_BROKER_SERVER: "confluent-broker.recrocog.com:9092"
+      CONFLUENT_BROKER_SERVER: "broker:9092"
       KAFKA_TOPIC: "test-topic"
       PRODUCER_INTERVAL_MS: "1000"
     restart: unless-stopped
@@ -23,7 +23,7 @@ services:
     - traefik
     - confluent
     environment:
-      CONFLUENT_BROKER_SERVER: "confluent-broker.recrocog.com:9092"
+      CONFLUENT_BROKER_SERVER: "broker:9092"
     restart: unless-stopped
 
 networks:

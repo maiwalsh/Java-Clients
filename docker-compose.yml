@@ -2,13 +2,16 @@ services:
   producer:
     # build:
       # context: ./Java-Producer
-    image: maiwalsh/java-producer:latest
+    image: maiwalsh/java-hb-producer:latest
     container_name: producer
     networks:
     - traefik
     - confluent
     environment:
-      KAFKA_BROKER: "confluent-broker.recrocog.com:9092"
+      JAVA_HOME: "/usr/lib/jvm/msopenjdk-current"
+      CONFLUENT_BROKER_SERVER: "broker:29092"
+      KAFKA_TOPIC: "test-topic"
+      PRODUCER_INTERVAL_MS: "1000"
     restart: unless-stopped
 
   tle_producer:
@@ -32,7 +35,7 @@ services:
     - traefik
     - confluent
     environment:
-      KAFKA_BROKER: "confluent-broker.recrocog.com:9092"
+      CONFLUENT_BROKER_SERVER: "broker:29092"
     restart: unless-stopped
 
 networks:
@@ -40,5 +43,5 @@ networks:
     name: traefik
     external: true
   confluent:
-    name: confluent
+    name: confluent_confluent
     external: true

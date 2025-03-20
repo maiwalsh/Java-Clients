@@ -14,18 +14,20 @@ services:
       PRODUCER_INTERVAL_MS: "1000"
     restart: unless-stopped
 
-  tle_producer:
-    # build:
-      # context: ./Java-TLE-Producer
-    image: maiwalsh/java-tle-producer:latest
-    container_name: tle-producer
-    networks:
-    - traefik
-    - confluent
-    environment:
-      KAFKA_BROKER: "confluent-broker.recrocog.com:9092"
-    restart: unless-stopped
-
+  tle-producer:
+      # build:
+        # context: ./Java-Producer
+      image: maiwalsh/java-tle-producer:latest
+      container_name: tle-producer
+      networks:
+      - traefik
+      - confluent
+      environment:
+        JAVA_HOME: "/usr/lib/jvm/msopenjdk-current"
+        CONFLUENT_BROKER_SERVER: "broker:29092"
+        KAFKA_TOPIC: "celestrak-tle"
+        PRODUCER_INTERVAL_MS: "1000"
+      restart: unless-stopped
   consumer:
     # build:
       # context: ./Java-Consumer

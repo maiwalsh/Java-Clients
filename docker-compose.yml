@@ -11,6 +11,18 @@ services:
       KAFKA_BROKER: "confluent-broker.recrocog.com:9092"
     restart: unless-stopped
 
+  tle_producer:
+    # build:
+      # context: ./Java-TLE-Producer
+    image: maiwalsh/java-tle-producer:latest
+    container_name: tle-producer
+    networks:
+    - traefik
+    - confluent
+    environment:
+      KAFKA_BROKER: "confluent-broker.recrocog.com:9092"
+    restart: unless-stopped
+
   consumer:
     # build:
       # context: ./Java-Consumer

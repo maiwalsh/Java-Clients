@@ -5,7 +5,7 @@ services:
     image: maiwalsh/java-hb-producer:latest
     container_name: producer
     networks:
-    - traefik
+    - ingress
     - confluent
     environment:
       JAVA_HOME: "/usr/lib/jvm/msopenjdk-current"
@@ -19,7 +19,7 @@ services:
       image: maiwalsh/java-tle-producer:latest
       container_name: tle-producer
       networks:
-      - traefik
+      - ingress
       - confluent
       environment:
         JAVA_HOME: "/usr/lib/jvm/msopenjdk-current"
@@ -33,16 +33,14 @@ services:
     image: maiwalsh/java-consumer:latest
     container_name: consumer
     networks:
-    - traefik
+    - ingress
     - confluent
     environment:
       CONFLUENT_BROKER_SERVER: "broker:29092"
     restart: unless-stopped
 
 networks:
-  traefik:
-    name: traefik
+  ingress:
     external: true
   confluent:
-    name: confluent_confluent
     external: true
